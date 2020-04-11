@@ -1,5 +1,5 @@
 module.exports = {
     auth: require('./auth'),
-    // user: require('./user'),
+    users: require('./users'),
     // workouts: require('./workouts')
 };

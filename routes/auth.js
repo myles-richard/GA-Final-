@@ -4,8 +4,9 @@ const ctrl = require("../Controllers");
 
 // Auth
 router.post("/register", ctrl.auth.signUp);
-router.post("/login", ctrl.auth.logIn);
-
+router.post("/", ctrl.auth.logIn);
+//get logged in user 
+router.get('/', ctrl.auth.getUser);
 // router.get("/verify", ctrl.auth.verify);
 
 
