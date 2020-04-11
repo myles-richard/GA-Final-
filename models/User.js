@@ -2,9 +2,15 @@ const mongoose = require('mongoose')
 const MuscleGroup = require('./MuscleGroup');
 
 const UserSchema = new mongoose.Schema({
-    name: String, 
+    name: {
+        type: String,
+        required: true,
+    }, 
+    password: {
+        type: String,
+        required: true,
+    },
     email: String,
-    password: String,
     savedWorkouts: [MuscleGroup.schema],
 })
 
