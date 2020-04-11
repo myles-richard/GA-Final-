@@ -11,6 +11,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     email: String,
+    date: {
+        type: Date,
+        default: Date.now
+    },
     savedWorkouts: [MuscleGroup.schema],
 })
 

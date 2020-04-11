@@ -10,6 +10,7 @@ const PORT = process.env.PORT;
 
 const db = require('./models');
 const routes = require('./routes');
+
 //Middleware
 app.use(bodyParser.json());
 
