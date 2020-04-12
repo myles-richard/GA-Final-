@@ -4,24 +4,17 @@ const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 
 
-const signUp = (req, res) => {
-    // const newUser = {
-    //     username: req.body.username,
-    //     password: req.body.password,
-    //     email: req.body.email
-    // }
-    // if(!newUser.username || !newUser.password) {
-    //     res.sendStatus(400);
-    //     return;
-    // }
-    res.send('sign up')
-
-    
+const getUser = async (req, res) => {
+    try {
+        const user = await db.User.findById(req.user.id).select('-password');
+        res.json(user);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error')
+    }
 }
 
-const getUser = (req, res) => {
-    res.send('get logged in user')
-}
+
 
 const logIn = async (req, res) => {
     const errors = validationResult(req);
@@ -67,7 +60,6 @@ const logIn = async (req, res) => {
 }
 
 module.exports = {
-    signUp,
     getUser,
     logIn,
 
