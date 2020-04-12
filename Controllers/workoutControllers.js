@@ -6,7 +6,7 @@ const { validationResult } = require('express-validator');
 
 const index = async (req,res) => {
     try {
-        const workouts = await db.Workout.find({ user: req.user.id  });
+        const workouts = await db.Workout.find({});
         res.json(workouts);
     } catch (err) {
         console.error(err.message);
