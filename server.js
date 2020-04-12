@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 //API Routes
 app.use('/api/v1/auth', routes.auth)
-// app.use('/api/v1/workouts, routes.workouts)
+app.use('/api/v1/workout', routes.workout)
 app.use('/api/v1/users', routes.users)
 
 app.listen(PORT, () => console.log(`Server running at local host ${PORT}`));

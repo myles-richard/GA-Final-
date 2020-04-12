@@ -6,7 +6,7 @@ module.exports = function(req,res, next) {
     const token = req.header('my-auth-token');
 
     //check if not token
-    if(!token) return res.status(401).json({ msg: 'No token, Authorization denied'});
+    if(!token) return res.status(401).json({ msg: 'No token, Authorization denied' });
 
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -18,14 +18,4 @@ module.exports = function(req,res, next) {
         }
    
 };
-// const verifyToken = (req,res,next) => {
-//     let token = req.headers['authorization'];
-//     jwt.verify(
-//         token, process.env.JWT_SECRET,
-//         (err, decodedUser) => {
-//             if(err || !decodedUser) return res.status(401).json({ error: 'Your are not authorized'});
-//             req.user = decodedUser;
-//             next();
-//         }
-//     )
-// }
+

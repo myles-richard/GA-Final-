@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const MuscleGroup = require('./MuscleGroup');
+const Workout = require('./Workout');
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    savedWorkouts: [MuscleGroup.schema],
+    savedWorkouts: [Workout.schema],
 })
 
 module.exports = mongoose.model('User', UserSchema)
