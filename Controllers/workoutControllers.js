@@ -7,10 +7,21 @@ const { validationResult } = require('express-validator');
 const index = async (req,res) => {
     try {
         const workouts = await db.Workout.find({});
+        if(!workouts) return res.status(404).json({ error: 'No workouts found'})
         res.json(workouts);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
+    }
+}
+
+const show = async (req,res) => {
+    try {
+        const workout = await db.Workout.findOne({ _id: req.params.id });
+        if(!workout) return res.status(404).json({ error: 'No workout found with that ID'});
+        return res.json(workout);
+    } catch (err) {
+        return res.status(500).json('Server Error');
     }
 }
 
@@ -41,5 +52,6 @@ const destroy = async (req,res) => {
 module.exports = {
     index,
     create,
+    show,
     destroy
 }

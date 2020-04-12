@@ -11,8 +11,15 @@ const show = (req, res) => {
     res.send('show')
 }
 
-const update = (req, res) => {
-    res.send('update')
+const update = async (req, res) => {
+    try {
+        let userToUpdate = await db.User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+        if(!userToUpdate) return res.status(401).json({ error: 'You are not authorized to edit User'});
+        return res.json(userToUpdate);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json('Server Error')
+    }
 }
 
 const create = async (req, res) => {

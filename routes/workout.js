@@ -6,7 +6,7 @@ const auth = require('../middleware/auth');
 
 //Workouts Routes
 router.get('/', auth, ctrl.workout.index);
-// router.get('/:id', ctrl.workoutscontroller.index);
+router.get('/:id', ctrl.workout.show);
 router.post('/create', ctrl.workout.create);
 router.delete('/:id', ctrl.workout.destroy);
 

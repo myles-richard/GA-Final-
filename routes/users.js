@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ctrl = require('../Controllers');
+const auth = require('../middleware/auth');
 const { check } = require('express-validator');
 
 //User Routes
@@ -14,7 +15,7 @@ router.post('/',[
     check('password', 'Please enter a password with 4 or more characters').isLength({ min: 4 })
 ], ctrl.users.create);
 
-router.put('/:id', ctrl.users.update);
+router.put('/:id', auth, ctrl.users.update);
 router.delete('/:id', ctrl.users.destroy);
 
 module.exports = router;
