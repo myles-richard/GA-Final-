@@ -20,7 +20,7 @@ const signUp = async (req, res) => {
     if(!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() })
     } 
-
+    // pull user data out
     const { name, email, password } = req.body;
 
     try {
@@ -35,7 +35,7 @@ const signUp = async (req, res) => {
             email,
             password
         });
-
+        //hash password 
         const salt = await bcrypt.genSalt(10);
 
         user.password = await bcrypt.hash(password, salt);

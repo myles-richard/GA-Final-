@@ -20,7 +20,7 @@ const routes = require('./routes');
 
 //Middleware
 app.use(cors(corsOptions));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ extended: false }));
 
 //API Routes
 app.use('/api/v1/auth', routes.auth)
