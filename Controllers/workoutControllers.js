@@ -37,7 +37,34 @@ const create = async (req,res) => {
     
 }
 
-//Delete user
+//save workout 
+const save = async (req, res) => {
+    try {
+        let user = await db.User.findByIdAndUpdate({_id: req.params.id}, {$push: {savedWorkouts: req.body.current}}, {new: true} );
+        if(!user) return res.status(404).json({ msg: 'User not found'});
+        
+        res.json(user);
+    } catch (err) {
+        console.error(err.message);
+        return res.status(500).json('Server Error')
+    }
+}
+
+//Delete save workout 
+const delSave = async (req, res) => {
+    // req.body.current = req.params.current;
+    try {
+        let user = await db.User.update( {_id: req.params.id}, {$pull: {savedWorkouts: req.body.current}}, {new: true} );
+        if(!user) return res.status(404).json({ msg: 'User not found'});
+        console.log('del' + user)
+        res.json(user);
+    } catch (err) {
+        console.error(err.message);
+        return res.status(500).json('Server Error')
+    }
+}
+
+//Delete workout 
 const destroy = async (req,res) => {
     try {
         const deletedWorkout = await db.Workout.findByIdAndDelete({_id: req.params.id});
@@ -53,5 +80,8 @@ module.exports = {
     index,
     create,
     show,
+    save,
+    delSave,
     destroy
+    
 }

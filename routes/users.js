@@ -8,7 +8,6 @@ const { check } = require('express-validator');
 router.get('/', ctrl.users.index);
 router.get('/:id', ctrl.users.show);
 
-
 router.put('/:id', auth, ctrl.users.update);
 router.delete('/:id', ctrl.users.destroy);
 
