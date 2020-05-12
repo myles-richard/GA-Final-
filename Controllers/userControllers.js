@@ -31,6 +31,7 @@ const update = async (req, res) => {
 
 
 
+
 const destroy = async (req, res) => {
     try {
         let userToDelete = await db.User.findOneAndDelete({ _id: req.params.id });
